@@ -15,6 +15,12 @@ public class Grid {
         }
     }
 
+    public Grid(Grid g){
+        this.w = g.w;
+        this.h = g.h;
+        this.grid = new ArrayList<>(g.grid);
+    }
+
     public ArrayList<Boolean> data(){
         return this.grid;
     }
@@ -33,5 +39,17 @@ public class Grid {
 
     public int height(){
         return this.h;
+    }
+
+    public Grid copy(){
+        return new Grid(this);
+    }
+
+    public void play(int x, int y){
+        for(int j = y; j < this.h; j++){
+            for(int i = x; i < this.w; i++){
+                this.set(i, j, false);
+            }
+        }
     }
 }

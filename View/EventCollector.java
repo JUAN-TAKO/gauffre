@@ -28,6 +28,6 @@ package View;
 
 public interface EventCollector {
 	void mouseClick(int l, int c);
-	void tictac();
+	void clock();
 
 }
