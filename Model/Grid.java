@@ -52,4 +52,8 @@ public class Grid {
             }
         }
     }
+
+    public void reset(Grid g){
+        this.grid = g.grid;
+    }
 }
