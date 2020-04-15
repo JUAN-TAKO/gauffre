@@ -8,6 +8,10 @@ import java.util.ArrayList;
         
 public class WinningShotAI extends AIPlayer{
     
+    public WinningShotAI(Grid C) {
+	super(C);
+    }
+    
     public Grid getCoupFinal(Grid C){
         Grid coupFinal=new Grid(C.width(), C.height());
         for (int i=0; i<coupFinal.width(); i++){
@@ -100,6 +104,11 @@ public class WinningShotAI extends AIPlayer{
         }
             
         return C_suivante;
+    }
+    
+    @Override
+    public Grid jouer(Grid C){ //prend la grille courante et renvoie la grille après modif
+        return findWinningShot(C);
     }
     
 }

@@ -1,7 +1,23 @@
 package Controller;
 import Model.Grid;
 
-public class HumanPlayer {
+public class HumanPlayer extends Player{
+    
+    public HumanPlayer(Grid C) {
+	super(C);
+    }
+    
+    int[] detecterClic(){           //renvoie le couple (i,j) (tableau de deux int) où le joueur a cliqué
+        int[] coupleIJ= new int[2];
+        
+        /*.......................
+        
+        A COMPLETER !
+        
+        .......................*/
+        
+        return coupleIJ;
+    }
     
     Grid configSuivante(Grid C, int i, int j){ //renvoie la config suivante en fct de là oùa appuyé le joueur,
                                                 //null si on est à la fin du jeu
@@ -20,6 +36,13 @@ public class HumanPlayer {
             }
         }
         return C_suivante;
+    }
+    
+    @Override
+    public Grid jouer(Grid C){ //prend la grille courante et renvoie la grille après modif
+        int[] coupleIJ=new int[2];
+        coupleIJ=detecterClic();
+        return configSuivante(C, coupleIJ[0], coupleIJ[1]);   
     }
     
 
