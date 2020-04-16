@@ -1,5 +1,8 @@
 package Controller;
 
-public class Player {
+import Model.Grid;
 
+public abstract class Player {
+
+            
 }

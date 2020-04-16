@@ -5,7 +5,7 @@ import Model.*;
 import java.util.ArrayList;
 import javafx.util.Pair;
 
-public abstract class AIPlayer {
+public abstract class AIPlayer extends Player{
 
     public ArrayList<Pair<Integer, Grid>> GenerateNext(Grid current) {
         ArrayList<Pair<Integer, Grid>> grids = new ArrayList<>();

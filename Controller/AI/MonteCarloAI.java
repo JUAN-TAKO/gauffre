@@ -1,6 +1,8 @@
 package Controller.AI;
 
 import Controller.AIPlayer;
+import Model.Grid;
+
 import java.util.HashMap;
 import javafx.util.Pair;
 import java.util.ArrayList;
