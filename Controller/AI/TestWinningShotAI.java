@@ -1,6 +1,6 @@
-package Controller;
+package Controller.AI;
 import Model.Grid;
-import Controller.WinningShotAI;
+import Controller.AI.WinningShotAI;
 import java.util.ArrayList;
 
 

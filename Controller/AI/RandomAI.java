@@ -1,4 +1,4 @@
-package Controller;
+package Controller.AI;
 
 import Model.Grid;
 import Controller.AIPlayer;

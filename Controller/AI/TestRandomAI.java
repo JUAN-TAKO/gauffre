@@ -1,5 +1,5 @@
 
-package Controller;
+package Controller.AI;
 
 import Model.Grid;
 

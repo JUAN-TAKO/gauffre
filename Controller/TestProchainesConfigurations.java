@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Grid;
 import Controller.AIPlayer;
+import Controller.AI.RandomAI;
 import java.util.ArrayList;
 
 //TEST VALIDE OK!
