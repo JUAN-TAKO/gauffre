@@ -4,6 +4,9 @@ import Model.Grid;
 import Patterns.Observateur;
 
 import javax.swing.*;
+
+import Controller.Controller;
+
 import java.awt.*;
 
 public class BoardGUI extends JComponent implements Observateur {
@@ -11,14 +14,14 @@ public class BoardGUI extends JComponent implements Observateur {
     Grid grid;
     int largeur, hauteur, oX, oY;
 
-    public BoardGUI(Grid g, int largeur, int hauteur, int oX, int oY) {
-        this.grid = g;
-        this.hauteur = ((int)((hauteur-5)/g.height()))*g.height();
-        this.largeur = ((int)((largeur-5)/g.width()))*g.width();
+    public BoardGUI(Grid grid, int largeur, int hauteur, int oX, int oY) {
+        this.grid = grid;
+        grid.ajouteObservateur(this);
+        this.hauteur = ((int)((hauteur-5)/grid.height()))*grid.height();
+        this.largeur = ((int)((largeur-5)/grid.width()))*grid.width();
         this.oY = oY;
         this.oX = oX;
         this.setSize(oX + largeur, oY + hauteur);
-        this.grid.ajouteObservateur(this);
 
     }
 
@@ -27,11 +30,14 @@ public class BoardGUI extends JComponent implements Observateur {
         Graphics2D drawable = (Graphics2D) g;
         g.clearRect(0, 0, getWidth(), getHeight());
         
+        if (!grid.enCours())
+            g.drawString("Fin", 20, getHeight()/2);
+        
         int pasX = largeur/grid.width();
         int pasY = hauteur/grid.height();
         for(int x = 0; x < grid.width(); x++) {
             for(int y = 0; y < grid.height(); y++) {
-                if(x == grid.width()-1 && y == grid.height()-1) {
+                if(x == 0 && y == 0) {
                     g.setColor(Color.green);
                 } else {
                     if(grid.get(x,y))

@@ -33,14 +33,18 @@ public class MonteCarloAI extends AIPlayer{
         float mult = this.graph.get(code).getValue() ? 1.0f : -1.0f;
         float sum = 0.0f;
         for(Pair<Integer, Float> p : weights){
-            sum += Math.pow(this.difficulty, mult*p.getValue().doubleValue());
+            double tmp = Math.pow(this.difficulty, mult*p.getValue().doubleValue());
+            sum += tmp;
+            System.out.println("[" + p.getKey() % g.width() + ", " + p.getKey() / g.width() + "] : " + tmp + " (" + p.getValue().doubleValue() + ")");
         }
+        System.out.println("total: " + sum);
 
         float rand = (float)Math.random() * sum;
         float cursor = 0.0f;
         for(Pair<Integer, Float> p : weights){
             cursor += Math.pow(this.difficulty, mult*p.getValue().doubleValue());
             if(cursor >= rand){
+                System.out.println("choisi: [" + p.getKey() % g.width() + ", " + p.getKey() / g.width() + "]");
                 return p.getKey();
             }
         }
@@ -83,7 +87,10 @@ public class MonteCarloAI extends AIPlayer{
     }
 
 	protected boolean tempsEcoule() {
-        return false;
+		int nextPlay = getNextPlay(this.g);
+		System.out.println("L'IA a joué : x = " + nextPlay % g.width() + " y = " + nextPlay / g.width());
+		this.g.play(nextPlay % g.width(), nextPlay / g.width());
+        return true;
     }
 
 }

@@ -6,7 +6,8 @@ import Patterns.Observable;
 public class Grid extends Observable {
     private ArrayList<Boolean> grid;
     private int w, h;
-
+    boolean enCours = true;
+    
     public Grid(int w, int h){
         this.w = w;
         this.h = h;
@@ -52,6 +53,13 @@ public class Grid extends Observable {
                 this.set(i, j, false);
             }
         }
+        
+        enCours = get(0,0);
+        metAJour();
+    }
+    
+    public boolean enCours() {
+    	return enCours;
     }
 
     public void reset(Grid g){

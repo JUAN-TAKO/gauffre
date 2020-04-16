@@ -20,6 +20,7 @@ public abstract class AIPlayer extends Player{
                 }
             }
         }
+		return grids;
     }
     
     public AIPlayer(Grid g) {
