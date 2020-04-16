@@ -7,10 +7,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public abstract class AIPlayer extends Player{
-    
-    public AIPlayer(Grid C) {
-	super(C);
-    }
 
     public void GenerateConfigs(Grid config, Object obj, Method method) {
         for (int j = 0; j < config.height(); j++) {
@@ -60,5 +56,8 @@ public abstract class AIPlayer extends Player{
             }
         }
         return L;
+
     }
+    
+
 }

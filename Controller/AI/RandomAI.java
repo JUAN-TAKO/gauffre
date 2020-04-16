@@ -1,14 +1,10 @@
-package Controller.AI;
+package Controller;
 
 import Model.Grid;
 import Controller.AIPlayer;
 import java.util.ArrayList;
 
 public class RandomAI extends AIPlayer {
-    
-    public RandomAI(Grid C) {
-	super(C);
-    }
     
     public Grid findRandomShot(Grid C){
         

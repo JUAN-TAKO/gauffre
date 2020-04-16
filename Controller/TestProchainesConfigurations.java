@@ -1,8 +1,7 @@
-
 package Controller;
 
-import Controller.AI.*;
 import Model.Grid;
+import Controller.AIPlayer;
 import java.util.ArrayList;
 
 //TEST VALIDE OK!
@@ -10,7 +9,7 @@ public class TestProchainesConfigurations {
     
     public static void main (String[] args){
         Grid C=new Grid(8, 6);
-        AIPlayer ai= new WinningShotAI(C);
+        AIPlayer ai= new RandomAI();
         ArrayList<Grid> prochainesConfigs = ai.prochainesConfigurations (C);
         for (int i=0; i<prochainesConfigs.size(); i++){
             Grid grilleAAfficher=prochainesConfigs.get(i);

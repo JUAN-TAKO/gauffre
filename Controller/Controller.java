@@ -1,5 +1,7 @@
 package Controller;
-import Model.*;
+
+import Model.Grid;
+
 public class Controller {
     
     Grid grid;

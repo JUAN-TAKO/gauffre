@@ -1,4 +1,5 @@
-package Controller.AI;
+
+package Controller;
 
 import Model.Grid;
 
@@ -6,7 +7,7 @@ import Model.Grid;
 public class TestRandomAI {
     public static void main(String[] args){
         Grid C=new Grid(8,6);
-        RandomAI randai=new RandomAI(C);
+        RandomAI randai=new RandomAI();
         
         //TEST PREMIER COUP:
         System.out.println("prochaine config random");

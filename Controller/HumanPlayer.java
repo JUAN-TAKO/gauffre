@@ -3,10 +3,6 @@ import Model.Grid;
 
 public class HumanPlayer extends Player{
     
-    public HumanPlayer(Grid C) {
-	super(C);
-    }
-    
     int[] detecterClic(){           //renvoie le couple (i,j) (tableau de deux int) où le joueur a cliqué
         int[] coupleIJ= new int[2];
         

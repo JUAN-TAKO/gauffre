@@ -1,7 +1,6 @@
-package Controller.AI;
-
+package Controller;
 import Model.Grid;
-import Controller.AI.*;
+import Controller.WinningShotAI;
 import java.util.ArrayList;
 
 
@@ -9,7 +8,7 @@ public class TestWinningShotAI {
     public static void main (String[] args){
         
         Grid C=new Grid(8,6);
-        WinningShotAI wiai=new WinningShotAI(C);
+        WinningShotAI wiai=new WinningShotAI();
         
         //TEST GETCOUPFINAL:
         System.out.println("coup final:");
