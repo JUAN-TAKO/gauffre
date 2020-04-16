@@ -119,4 +119,25 @@ public class WinningShotAI extends AIPlayer{
 		return 0;
 	}
     
+        public int[] adaptateurGridIndice(Grid gentree, Grid gsortie){
+        Grid gclone=gsortie.copy();
+        for (int i=0; i<gsortie.width(); i++){
+            for (int j=0; j<gsortie.height(); j++)
+                if (gentree.get(i, j)==false){
+                    gclone.set(i,j,true);
+            }
+        }
+        int [] retour={0,0};
+        for (int i=0; i<gclone.width(); i++){
+            for (int j=0; j<gclone.height(); j++){
+                if (gclone.get(i, j)==false){
+                    retour[0]=i;
+                    retour[1]=j;
+                }
+            }
+        }
+        return retour;
+        
+    }
+        
 }
