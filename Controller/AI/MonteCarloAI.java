@@ -14,4 +14,5 @@ public class MonteCarloAI extends AIPlayer{
 	protected boolean tempsEcoule() {
         return false;
     }
+
 }

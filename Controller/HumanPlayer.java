@@ -19,8 +19,7 @@ public class HumanPlayer extends Player{
         return coupleIJ;
     }
     
-    void configSuivante(int i, int j){ //renvoie la config suivante en fct de là oùa appuyé le joueur,
-                                                //null si on est à la fin du jeu
+    void configSuivante(int i, int j){ //renvoie la config suivante en fct de là oùa appuyé le joueur,                                        //null si on est à la fin du jeu
         g.play(i, j);
     }
     
@@ -33,5 +32,4 @@ public class HumanPlayer extends Player{
         	return false;
         }
     }
-    
 }

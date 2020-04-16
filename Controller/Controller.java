@@ -4,6 +4,7 @@ import Controller.AI.RandomAI;
 import Controller.AI.WinningShotAI;
 import Model.Grid;
 import View.EventCollector;
+import Controller.AI.*;
 
 public class Controller implements EventCollector {
     
@@ -36,6 +37,8 @@ public class Controller implements EventCollector {
         joueurCourant = joueur1;
 	}
     
+    
+    
     public boolean finDuJeu(){ //méthode pour savoir si on a fini
         Grid coupFinal=new Grid(grid.width(), grid.height());
         coupFinal.play(coupFinal.height(), coupFinal.width());
@@ -49,10 +52,6 @@ public class Controller implements EventCollector {
             else{
                 joueurCourant=joueur1;
             }
-    }
-
-    public Player getJoueurCourant() {
-        return joueurCourant;
     }
     
     /*
