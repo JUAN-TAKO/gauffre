@@ -7,6 +7,7 @@ public class Grid extends Observable {
     private ArrayList<Boolean> grid;
     private int w, h;
     boolean enCours = true;
+    int joueurCourant = 1;
     
     public Grid(int w, int h){
         this.w = w;
@@ -55,7 +56,12 @@ public class Grid extends Observable {
         }
         
         enCours = get(0,0);
+        joueurCourant = joueurCourant == 1 ? 2 : 1;
         metAJour();
+    }
+    
+    public int getJoueurCourant() {
+    	return joueurCourant;
     }
     
     public boolean enCours() {
@@ -67,6 +73,7 @@ public class Grid extends Observable {
     }
     
     public boolean empty(int x, int y) {
-    	return this.get(x, y);
+    	return (x >= 0 && x < width() && y >= 0 && y < height()) 
+    			&& this.get(x, y);
     }
 }
