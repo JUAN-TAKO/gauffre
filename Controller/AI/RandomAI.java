@@ -6,10 +6,6 @@ import java.util.ArrayList;
 
 public class RandomAI extends AIPlayer {
     
-    public RandomAI(Grid C) {
-	super(C);
-    }
-    
     public Grid findRandomShot(Grid C){
         
         ArrayList<Grid> L1= new ArrayList<Grid>();
