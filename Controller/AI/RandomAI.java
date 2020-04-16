@@ -29,4 +29,10 @@ public class RandomAI extends AIPlayer {
     	findRandomShot();
 		return true;
     }
+
+	@Override
+	public int getNextPlay(Grid g) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

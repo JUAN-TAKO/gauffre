@@ -112,5 +112,11 @@ public class WinningShotAI extends AIPlayer{
     	findWinningShot();
 		return true;
     }
+
+	@Override
+	public int getNextPlay(Grid g) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
 }
