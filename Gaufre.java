@@ -7,10 +7,12 @@ public class Gaufre{
         Grid gaufre=new Grid(8,6);
         
         //A PRECISER COMMENT ON CHOISIT IA ET JOUEUR
-        Player joueur1=new /*Player choisi*/();
-        Player joueur2=new /*Player choisi*/();
+        Player joueur1=new /*Player choisi*/HumanPlayer();
+        Player joueur2=new /*Player choisi*/HumanPlayer();
         
         Controller control=new Controller(gaufre, joueur1,joueur2);
+
+        GraphicsInterface.demarrer();
         
         while (control.finDuJeu()!=true){  //tant qu'on est pas arrivé à la fin du jeu on alterne
             gaufre=joueur1.jouer(gaufre);

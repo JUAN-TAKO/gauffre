@@ -3,6 +3,7 @@ package View;
 import Model.Grid;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GraphicsInterface implements Runnable{
 
@@ -20,10 +21,11 @@ public class GraphicsInterface implements Runnable{
         BoardGUI board = new BoardGUI(g, 300, 300,500-300, 500-300);
         MenuGUI menu = new MenuGUI(500-300, 500,0, 0);
         board.addMouseListener(new AdaptateurSouris());
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel(new BorderLayout());
         frame.add(panel);
-        panel.add(menu);
         panel.add(board);
+        panel.add(menu);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 500);
         frame.setVisible(true);

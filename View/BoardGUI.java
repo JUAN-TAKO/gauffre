@@ -16,6 +16,7 @@ public class BoardGUI extends JComponent implements Observateur {
         this.largeur = largeur;
         this.oY = oY;
         this.oX = oX;
+        this.setSize(oX + largeur, oY + hauteur);
     }
 
     @Override
