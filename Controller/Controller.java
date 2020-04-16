@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Grid;
+import Controller.AI.*;
 
 public class Controller {
     
@@ -15,6 +16,8 @@ public class Controller {
         this.joueur1=joueur1;
         this.joueur2=joueur2;
 	}
+    
+    
     
     public boolean finDuJeu(){ //méthode pour savoir si on a fini
         Grid coupFinal=new Grid(grid.width(), grid.height());
@@ -39,12 +42,26 @@ public class Controller {
             }
     }
     
+    
     void jouer(){
-        grid=joueurCourant.jouer(grid);
-    }
-
-    public Player getJoueurCourant() {
-        return joueurCourant;
+        if (joueurCourant instanceof AIPlayer){
+            if (joueurCourant instanceof RandomAI){
+                RandomAI joueurCourantRand=(RandomAI) joueurCourant;
+                grid=joueurCourantRand.jouer(grid);
+            }
+            else if (joueurCourant instanceof WinningShotAI){
+                WinningShotAI joueurCourantWin= (WinningShotAI) joueurCourant;
+                grid=joueurCourantWin.jouer(grid);
+            }
+        }
+        else if (joueurCourant instanceof HumanPlayer){
+            HumanPlayer joueurCourantHum=(HumanPlayer)joueurCourant;
+            int i=0; //A MODIFIER
+            int j=0; //A MODIFIER
+            //i=.........voir comment les recuperer
+            //j=...................................
+            grid=joueurCourantHum.jouerCase(grid,i,j);
+        }
     }
 
 
