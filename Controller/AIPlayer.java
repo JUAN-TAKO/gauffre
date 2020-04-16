@@ -60,8 +60,5 @@ public abstract class AIPlayer extends Player{
             }
         }
         return L;
-
     }
-    
-
 }
