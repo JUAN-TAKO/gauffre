@@ -21,7 +21,7 @@ public class BoardGUI extends JComponent implements Observateur {
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D drawable = (Graphics2D) g;
-        g.clearRect(0,0, largeur, hauteur);
+        g.clearRect(oX,oY, oX +  largeur, oY + hauteur);
         int pasX = largeur/grid.width();
         int pasY = hauteur/grid.height();
         for(int x = 0; x < grid.width(); x++) {

@@ -18,8 +18,12 @@ public class GraphicsInterface implements Runnable{
         JFrame frame = new JFrame("Gaufre Empoisonnée");
         Grid g = new Grid(3,3);
         BoardGUI board = new BoardGUI(g, 300, 300,500-300, 500-300);
+        MenuGUI menu = new MenuGUI(500-300, 500,0, 0);
         board.addMouseListener(new AdaptateurSouris());
-        frame.add(board);
+        JPanel panel = new JPanel();
+        frame.add(panel);
+        panel.add(menu);
+        panel.add(board);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 500);
         frame.setVisible(true);

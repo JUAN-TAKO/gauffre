@@ -52,8 +52,4 @@ public class Grid {
             }
         }
     }
-
-    public Grid findRandomShot(Grid g) {
-        return g;
-    };
 }
