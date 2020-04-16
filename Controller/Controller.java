@@ -14,7 +14,6 @@ public class Controller {
         this.grid=grid;
         this.joueur1=joueur1;
         this.joueur2=joueur2;
-		
 	}
     
     public boolean finDuJeu(){ //méthode pour savoir si on a fini
@@ -27,7 +26,6 @@ public class Controller {
         if (coupFinal==grid){
             return true;
         }
-        
         return false;
     }
     
@@ -43,6 +41,10 @@ public class Controller {
     
     void jouer(){
         grid=joueurCourant.jouer(grid);
+    }
+
+    public Player getJoueurCourant() {
+        return joueurCourant;
     }
 
 
