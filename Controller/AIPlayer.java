@@ -2,34 +2,27 @@ package Controller;
 
 import Model.*;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
+import javafx.util.Pair;
 
-public class AIPlayer {
+public abstract class AIPlayer {
 
-    public void GenerateConfigs(Grid config, Object obj, Method method) {
-        for (int j = 0; j < config.height(); j++) {
-            for (int i = 0; i < config.width(); i++) {
-                if (config.get(i, j)) {
-                    Grid new_config = config.copy();
-                    new_config.play(i, j);
-                    try {
-                        method.invoke(obj, new_config);
-                    } catch (IllegalAccessException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (IllegalArgumentException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+    public ArrayList<Pair<Integer, Grid>> GenerateNext(Grid current) {
+        ArrayList<Pair<Integer, Grid>> grids = new ArrayList<>();
+        for (int j = 0; j < current.height(); j++) {
+            for (int i = 0; i < current.width(); i++) {
+                if (current.get(i, j)) {
+                    Grid next = current.copy();
+                    next.play(i, j);
+                    int idx = j*current.width() + i;
+                    grids.add(new Pair<>(idx, next));
                 }
             }    
         }
+        return grids;
     }
+
+    public abstract int getNextPlay(Grid g);
     
     public ArrayList<Grid> prochainesConfigurations(Grid C){ //renvoie la liste des prochaines config accessibles
         int m=C.width();
