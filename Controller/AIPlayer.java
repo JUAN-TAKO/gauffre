@@ -16,11 +16,16 @@ public abstract class AIPlayer extends Player{
                     next.play(i, j);
                     int idx = j*current.width() + i;
                     grids.add(new Pair<>(idx, next));
+    
                 }
-            }    
+            }
         }
-        return grids;
     }
+    
+    public AIPlayer(Grid g) {
+		super(g);
+		// TODO Auto-generated constructor stub
+	}
 
     public abstract int getNextPlay(Grid g);
     
@@ -51,5 +56,11 @@ public abstract class AIPlayer extends Player{
         return L;
 
     }
+
+    @Override
+	protected boolean tempsEcoule() {
+		return false;
+	}
+    
 
 }

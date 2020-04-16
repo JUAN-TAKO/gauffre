@@ -1,5 +1,4 @@
 package Controller.AI;
-
 import Controller.AIPlayer;
 import Model.Grid;
 
@@ -15,7 +14,8 @@ public class MonteCarloAI extends AIPlayer{
     private HashMap<Integer, Pair<ArrayList<Pair<Integer, Float>>, Boolean>> graph;
     private float difficulty = 1.0f;
 
-    public MonteCarloAI(float difficulty){
+    public MonteCarloAI(Grid g, float difficulty){
+        super(g);
         this.graph = new HashMap<Integer, Pair<ArrayList<Pair<Integer, Float>>, Boolean>>();
         this.difficulty = 1.0f + difficulty/5.0f;
     }
@@ -82,5 +82,8 @@ public class MonteCarloAI extends AIPlayer{
         return sum;
     }
 
-    
+	protected boolean tempsEcoule() {
+        return false;
+    }
+
 }

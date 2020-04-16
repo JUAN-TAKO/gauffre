@@ -8,7 +8,12 @@ import java.util.ArrayList;
         
 public class WinningShotAI extends AIPlayer{
     
-    public Grid getCoupFinal(Grid C){
+    public WinningShotAI(Grid g) {
+		super(g);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Grid getCoupFinal(Grid C){
         Grid coupFinal=new Grid(C.width(), C.height());
         for (int i=0; i<coupFinal.width(); i++){
             for (int j=0; j<coupFinal.height(); j++){
@@ -46,7 +51,7 @@ public class WinningShotAI extends AIPlayer{
         return coupsGagnants;
     }
     
-    public int getNextPlay(Grid C){ /*renvoie la configuration la meilleure selon le principe du coup gagnant
+    public void findWinningShot(){ /*renvoie la configuration la meilleure selon le principe du coup gagnant
                                             (ou une tirée au hasard parmi les meilleures si il y en a plusieurs)
                                            en prenant la grille courante en argument*/
         ArrayList<Grid> L1= new ArrayList<Grid>();
@@ -56,11 +61,11 @@ public class WinningShotAI extends AIPlayer{
         Grid C_suivante; // C_suivante la config que l’on renverra
         
         //L1=toutes les prochaines config possibles en un coup
-        L1=this.prochainesConfigurations(C); //voir méthode de AIPlayer
+        L1=this.prochainesConfigurations(g); //voir méthode de AIPlayer
         
         //L2= celles qui ne seront pas des coups gagnants pour l'adversaire, c-à-dire L1 - les configurations gagnantes
         L2=L1;
-        ArrayList<Grid> configGagnantes=getCoupsGagnants(C);
+        ArrayList<Grid> configGagnantes=getCoupsGagnants(g);
         for (int i=0; i<L2.size(); i++){
             if (configGagnantes.contains(L2.get(i))){
                 L2.remove(i);
@@ -68,22 +73,22 @@ public class WinningShotAI extends AIPlayer{
         }
         
         //L3=la config perdante pour l'adversaire si elle est dans L1, nul sinon
-        if (L1.contains(getCoupPerdant(C))){
-            L3.add(getCoupPerdant(C));
+        if (L1.contains(getCoupPerdant(g))){
+            L3.add(getCoupPerdant(g));
         }
         
-        if ((L1.size()==1) && (L1.get(0)==this.getCoupFinal(C))){
-            return 0; //si on n'a pas d'autre choix que de manger le poison, on le fait
+        if ((L1.size()==1) && (L1.get(0)==this.getCoupFinal(g))){
+            this.g = L1.get(0); //si on n'a pas d'autre choix que de manger le poison, on le fait
+            return;
         }
         
         //on retire d'office le choix de manger le poison de notre liste de choix si il y est
-        if (L1. contains(this.getCoupFinal(C))){
-            L1.remove(this.getCoupFinal(C));
+        if (L1. contains(this.getCoupFinal(g))){
+            L1.remove(this.getCoupFinal(g));
         }
         
         if (L3.isEmpty()){  //si on ne peut pas faire perdre l’adversaire par le coup perdant
             if (L2.isEmpty()){ //si on est obligés de laisser un coup gagnant à l’adversaire
-                
                 //C_suivante=tirer au hasard une config de L1;
                 int random=(int)(Math.random()*L1.size());
                 C_suivante=L1.get(random);
@@ -92,14 +97,20 @@ public class WinningShotAI extends AIPlayer{
                 
                 //C_suivante=tirer au hasard une config de L2;
                 int random=(int)(Math.random()*L2.size());
-                C_suivante=L1.get(random);
+                C_suivante=L2.get(random);
             }
         }
         else{
             C_suivante=L3.get(0);
         }
-            
-        return 0;
+           
+        this.g = C_suivante;
+    }
+    
+	@Override
+    public boolean tempsEcoule() {
+    	findWinningShot();
+		return true;
     }
     
 }
