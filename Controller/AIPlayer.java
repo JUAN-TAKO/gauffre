@@ -8,7 +8,12 @@ import java.util.ArrayList;
 
 public abstract class AIPlayer extends Player{
 
-    public void GenerateConfigs(Grid config, Object obj, Method method) {
+    public AIPlayer(Grid g) {
+		super(g);
+		// TODO Auto-generated constructor stub
+	}
+
+	public void GenerateConfigs(Grid config, Object obj, Method method) {
         for (int j = 0; j < config.height(); j++) {
             for (int i = 0; i < config.width(); i++) {
                 if (config.get(i, j)) {
@@ -58,6 +63,11 @@ public abstract class AIPlayer extends Player{
         return L;
 
     }
+
+    @Override
+	protected boolean tempsEcoule() {
+		return false;
+	}
     
 
 }
