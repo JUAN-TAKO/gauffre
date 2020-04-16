@@ -28,7 +28,7 @@ public class Controller implements EventCollector {
         
         //A PRECISER COMMENT ON CHOISIT IA ET JOUEUR
         joueur1 = new /*Player choisi*/ HumanPlayer(grid);
-        joueur2 = new /*Player choisi*/ MonteCarloAI(grid, 3);
+        joueur2 = new /*Player choisi*/ WinningShotAI(grid);
         joueurCourant = joueur1;
 	}
     
@@ -48,7 +48,7 @@ public class Controller implements EventCollector {
     		if(decompte == 0) {
     			if(joueurCourant.tempsEcoule()) {
     				// IA
-    				System.out.println("L'IA a joué un coup.");
+    				//System.out.println("L'IA a joué un coup.");
     				changeJoueur();
     			} else {
     				//System.out.println("En attente d'un coup du joueur " + grid.getJoueurCourant());
