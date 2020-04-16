@@ -1,6 +1,9 @@
 package View;
 
 import javax.swing.*;
+
+import Patterns.Observateur;
+
 import java.awt.*;
 
 public class MenuGUI  extends JPanel implements Observateur{

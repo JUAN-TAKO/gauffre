@@ -1,8 +1,9 @@
 package Model;
 
 import java.util.ArrayList;
+import Patterns.Observable;
 
-public class Grid {
+public class Grid extends Observable {
     private ArrayList<Boolean> grid;
     private int w, h;
 
@@ -51,5 +52,13 @@ public class Grid {
                 this.set(i, j, false);
             }
         }
+    }
+
+    public void reset(Grid g){
+        this.grid = g.grid;
+    }
+    
+    public boolean empty(int x, int y) {
+    	return this.get(x, y);
     }
 }
