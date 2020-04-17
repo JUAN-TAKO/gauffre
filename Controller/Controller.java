@@ -28,26 +28,14 @@ public class Controller implements EventCollector {
         
         //A PRECISER COMMENT ON CHOISIT IA ET JOUEUR
         joueur1 = new /*Player choisi*/ HumanPlayer(grid);
-        joueur2 = new /*Player choisi*/ MonteCarloAI(grid, 10);
+        joueur2 = new /*Player choisi*/ WinningShotAI(grid);
         joueurCourant = joueur1;
 	}
     
     
-    
-    public boolean finDuJeu(){ //mÃ©thode pour savoir si on a fini
-        Grid coupFinal=new Grid(grid.width(), grid.height());
-        coupFinal.play(coupFinal.height(), coupFinal.width());
-        return coupFinal == grid;
-    }
-    
     void changeJoueur() {
-            if (joueurCourant==joueur1){
-                joueurCourant=joueur2;
-            }
-            else{
-                joueurCourant=joueur1;
-            }
-            decompte = lenteurAttente;
+    	joueurCourant = joueurCourant == joueur1 ? joueur2 : joueur1;
+        decompte = lenteurAttente;
     }
     
     public Grid getGrid() {
@@ -60,10 +48,10 @@ public class Controller implements EventCollector {
     		if(decompte == 0) {
     			if(joueurCourant.tempsEcoule()) {
     				// IA
-    				System.out.println("L'IA a joué un coup.");
+    				//System.out.println("L'IA a joué un coup.");
     				changeJoueur();
     			} else {
-    				System.out.println("En attente d'un coup.");
+    				//System.out.println("En attente d'un coup du joueur " + grid.getJoueurCourant());
     				decompte = lenteurAttente;
     			}
     		} else {

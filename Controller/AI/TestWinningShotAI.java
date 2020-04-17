@@ -65,13 +65,11 @@ public class TestWinningShotAI {
         
         //TEST FINDWINNING SHOT
         //TEST1: sur la grille vide
-        Grid emptyC=new Grid(8,6);
-        WinningShotAI wiaiVide = new WinningShotAI(emptyC);
         System.out.println("coup gagnant test1:");
-        wiaiVide.findWinningShot();
-        for (int p=0; p<emptyC.width(); p++){
-                for (int q=0; q<emptyC.height(); q++){
-                    if (emptyC.get(p, q)==true){
+        Grid coupGagnant=wiai.findWinningShot(C);
+        for (int p=0; p<coupGagnant.width(); p++){
+                for (int q=0; q<coupGagnant.height(); q++){
+                    if (coupGagnant.get(p, q)==true){
                         System.out.print("O");
                     }
                     else{
@@ -84,10 +82,10 @@ public class TestWinningShotAI {
         
         //TEST2: sur la grille remplie grâce au test précédent
         System.out.println("coup gagnant test2:");
-        wiaiVide.findWinningShot();
-        for (int p=0; p<emptyC.width(); p++){
-                for (int q=0; q<emptyC.height(); q++){
-                    if (emptyC.get(p, q)==true){
+        Grid coupGagnant2=wiai.findWinningShot(coupGagnant);
+        for (int p=0; p<coupGagnant2.width(); p++){
+                for (int q=0; q<coupGagnant2.height(); q++){
+                    if (coupGagnant2.get(p, q)==true){
                         System.out.print("O");
                     }
                     else{
@@ -100,10 +98,10 @@ public class TestWinningShotAI {
         
         //TEST3: sur la grille remplie grâce au test précédent (encore)
         System.out.println("coup gagnant test3:");
-        wiaiVide.findWinningShot();
-        for (int p=0; p<emptyC.width(); p++){
-                for (int q=0; q<emptyC.height(); q++){
-                    if (emptyC.get(p, q)==true){
+        Grid coupGagnant3=wiai.findWinningShot(coupGagnant2);
+        for (int p=0; p<coupGagnant3.width(); p++){
+                for (int q=0; q<coupGagnant3.height(); q++){
+                    if (coupGagnant3.get(p, q)==true){
                         System.out.print("O");
                     }
                     else{
@@ -116,11 +114,10 @@ public class TestWinningShotAI {
         
         //TEST4: sur une configuration pouvant être gagnante (gagne)
         System.out.println("coup gagnant test4:");
-        WinningShotAI wiaiGagnant = new WinningShotAI(coupsGagnants.get(0));
-        wiaiGagnant.findWinningShot();
-        for (int p=0; p<coupsGagnants.get(0).width(); p++){
-                for (int q=0; q<coupsGagnants.get(0).height(); q++){
-                    if (coupsGagnants.get(0).get(p, q)==true){
+        Grid coupGagnant4=wiai.findWinningShot(coupsGagnants.get(0));
+        for (int p=0; p<coupGagnant4.width(); p++){
+                for (int q=0; q<coupGagnant4.height(); q++){
+                    if (coupGagnant4.get(p, q)==true){
                         System.out.print("O");
                     }
                     else{
@@ -132,12 +129,11 @@ public class TestWinningShotAI {
         System.out.println("");
         
         //TEST5: sur une configuration perdante (perd)
-        System.out.println("coup perdant test5:");
-        WinningShotAI wiaiPerdant = new WinningShotAI(coupPerdant);
-        wiaiPerdant.findWinningShot();
-        for (int p=0; p<coupPerdant.width(); p++){
-                for (int q=0; q<coupPerdant.height(); q++){
-                    if (coupPerdant.get(p, q)==true){
+        System.out.println("coup gagnant test4:");
+        Grid coupGagnant5=wiai.findWinningShot(coupPerdant);
+        for (int p=0; p<coupGagnant5.width(); p++){
+                for (int q=0; q<coupGagnant5.height(); q++){
+                    if (coupGagnant5.get(p, q)==true){
                         System.out.print("O");
                     }
                     else{

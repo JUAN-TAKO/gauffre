@@ -17,7 +17,7 @@ public class AdaptateurSouris extends MouseAdapter {
 	public void mousePressed(MouseEvent e) {
 		int c = (e.getY() - b.oX) / b.cellHeight();
 		int l = (e.getX() - b.oY) / b.cellWidth();
-		System.out.println("Clicked ! Coordinates : x = " + e.getX() + " y = " + e.getY() + " | Grid Coordinates : x = " + l + " y = " + c);
+		//System.out.println("Clicked ! Coordinates : x = " + e.getX() + " y = " + e.getY() + " | Grid Coordinates : x = " + l + " y = " + c);
 		collector.mouseClick(l, c);
 	}
 	

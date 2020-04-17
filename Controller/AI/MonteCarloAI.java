@@ -11,12 +11,12 @@ import Model.Grid;
 
 public class MonteCarloAI extends AIPlayer{
     
-    private HashMap<Integer, Pair<ArrayList<Pair<Integer, Float>>, Boolean>> graph;
+    private HashMap<Integer, ArrayList<Pair<Integer, Float>>> graph;
     private float difficulty = 1.0f;
 
     public MonteCarloAI(Grid g, float difficulty){
         super(g);
-        this.graph = new HashMap<Integer, Pair<ArrayList<Pair<Integer, Float>>, Boolean>>();
+        this.graph = new HashMap<Integer, ArrayList<Pair<Integer, Float>>>();
         this.difficulty = 1.0f + difficulty/5.0f;
     }
 
@@ -27,13 +27,12 @@ public class MonteCarloAI extends AIPlayer{
         int code = g.data().hashCode();
 
         if(!this.graph.containsKey(code)){
-            evalGrid(g, 1, true);
+            evalGrid(g, 1);
         }
-        weights = this.graph.get(code).getKey();
-        float mult = this.graph.get(code).getValue() ? 1.0f : -1.0f;
+        weights = this.graph.get(code);
         float sum = 0.0f;
         for(Pair<Integer, Float> p : weights){
-            double tmp = Math.pow(this.difficulty, mult*p.getValue().doubleValue());
+            double tmp = Math.pow(this.difficulty, -p.getValue().doubleValue());
             sum += tmp;
             System.out.println("[" + p.getKey() % g.width() + ", " + p.getKey() / g.width() + "] : " + tmp + " (" + p.getValue().doubleValue() + ")");
         }
@@ -42,7 +41,7 @@ public class MonteCarloAI extends AIPlayer{
         float rand = (float)Math.random() * sum;
         float cursor = 0.0f;
         for(Pair<Integer, Float> p : weights){
-            cursor += Math.pow(this.difficulty, mult*p.getValue().doubleValue());
+            cursor += Math.pow(this.difficulty, -p.getValue().doubleValue());
             if(cursor >= rand){
                 System.out.println("choisi: [" + p.getKey() % g.width() + ", " + p.getKey() / g.width() + "]");
                 return p.getKey();
@@ -51,37 +50,32 @@ public class MonteCarloAI extends AIPlayer{
         return 0;
     }
 
-    private float evalGrid(Grid g, int index, Boolean isSelf){
+    private float evalGrid(Grid g, int index){
         if(index == 0){
-            return isSelf ? -1 : 1;
+            return 1;
         }
-        int sum = 0;
-
         int code = g.data().hashCode();
+        int sum = 0;
+        
         if(this.graph.containsKey(code)){
-            for(Pair<Integer, Float> link : this.graph.get(code).getKey()){
-                sum += link.getValue();
+            for(Pair<Integer, Float> link : this.graph.get(code)){
+                sum -= link.getValue();
             }
-            
-            sum = this.graph.get(code).getValue() ? sum : -sum;
         }
         else{
             ArrayList<Pair<Integer, Grid>> next = this.GenerateNext(g);
             ArrayList<Pair<Integer, Float>> weights = new ArrayList<>();
 
             for(Pair<Integer, Grid> grid_p : next){
-                Float w = new Float(evalGrid(grid_p.getValue(), grid_p.getKey(), !isSelf));
-                sum += w;
+                Float w = new Float(evalGrid(grid_p.getValue(), grid_p.getKey()));
+                sum -= w;
                 weights.add(new Pair<>(grid_p.getKey(), w));
             }
 
             weights.sort(Comparator.comparing(p -> p.getValue()));
 
-            this.graph.put(code, new Pair<>(weights, new Boolean(isSelf)));
-            
+            this.graph.put(code, weights);
         }
-        
-        sum = isSelf ? sum : -sum;
 
         return sum;
     }

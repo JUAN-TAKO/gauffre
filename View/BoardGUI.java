@@ -31,7 +31,7 @@ public class BoardGUI extends JComponent implements Observateur {
         g.clearRect(0, 0, getWidth(), getHeight());
         
         if (!grid.enCours())
-            g.drawString("Fin", 20, getHeight()/2);
+            g.drawString("Fin - joueur " + grid.getJoueurCourant() + " a gagné.", 20, getHeight()/2);
         
         int pasX = largeur/grid.width();
         int pasY = hauteur/grid.height();
