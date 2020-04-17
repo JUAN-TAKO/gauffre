@@ -1,22 +1,21 @@
 package Controller.AI;
 import Controller.AIPlayer;
-import Model.Grid;
 
 import java.util.HashMap;
-import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 import Model.Grid;
+import utils.Pair;
 
 public class MonteCarloAI extends AIPlayer{
     
-    private HashMap<Integer, ArrayList<Pair<Integer, Float>>> graph;
+    private HashMap<Integer, Pair<ArrayList<Pair<Integer, Float>>, Integer>> graph;
     private float difficulty = 1.0f;
 
     public MonteCarloAI(Grid g, float difficulty){
         super(g);
-        this.graph = new HashMap<Integer, ArrayList<Pair<Integer, Float>>>();
+        this.graph = new HashMap<>();
         this.difficulty = 1.0f + difficulty/5.0f;
     }
 
@@ -29,7 +28,7 @@ public class MonteCarloAI extends AIPlayer{
         if(!this.graph.containsKey(code)){
             evalGrid(g, 1);
         }
-        weights = this.graph.get(code);
+        weights = this.graph.get(code).getKey();
         float sum = 0.0f;
         for(Pair<Integer, Float> p : weights){
             double tmp = Math.pow(this.difficulty, -p.getValue().doubleValue());
@@ -58,14 +57,13 @@ public class MonteCarloAI extends AIPlayer{
         int sum = 0;
         
         if(this.graph.containsKey(code)){
-            for(Pair<Integer, Float> link : this.graph.get(code)){
+            for(Pair<Integer, Float> link : this.graph.get(code).getKey()){
                 sum -= link.getValue();
             }
         }
         else{
             ArrayList<Pair<Integer, Grid>> next = this.GenerateNext(g);
             ArrayList<Pair<Integer, Float>> weights = new ArrayList<>();
-
             for(Pair<Integer, Grid> grid_p : next){
                 Float w = new Float(evalGrid(grid_p.getValue(), grid_p.getKey()));
                 sum -= w;
@@ -74,7 +72,7 @@ public class MonteCarloAI extends AIPlayer{
 
             weights.sort(Comparator.comparing(p -> p.getValue()));
 
-            this.graph.put(code, weights);
+            this.graph.put(code, new Pair<>((weights), next.size()));
         }
 
         return sum;
@@ -82,7 +80,7 @@ public class MonteCarloAI extends AIPlayer{
 
 	protected boolean tempsEcoule() {
 		int nextPlay = getNextPlay(this.g);
-		System.out.println("L'IA a jou� : x = " + nextPlay % g.width() + " y = " + nextPlay / g.width());
+		System.out.println("L'IA a joué : x = " + nextPlay % g.width() + " y = " + nextPlay / g.width());
 		this.g.play(nextPlay % g.width(), nextPlay / g.width());
         return true;
     }
