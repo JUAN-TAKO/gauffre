@@ -88,7 +88,7 @@ public class MonteCarloAI extends AIPlayer{
 
 	protected boolean tempsEcoule() {
 		int nextPlay = getNextPlay(this.g);
-		System.out.println("L'IA a joué : x = " + nextPlay % g.width() + " y = " + nextPlay / g.width());
+		System.out.println("L'IA a jouï¿½ : x = " + nextPlay % g.width() + " y = " + nextPlay / g.width());
 		this.g.play(nextPlay % g.width(), nextPlay / g.width());
         return true;
     }

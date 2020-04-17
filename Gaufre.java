@@ -14,7 +14,6 @@ public class Gaufre{
             gaufre=joueur1.jouer(gaufre);
             gaufre=joueur2.jouer(gaufre);
             //prévoir un break pour une fin de la partie en cours de route
-            
         }
         */
         

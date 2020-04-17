@@ -16,7 +16,7 @@ public class MenuGUI  extends JPanel implements Observateur{
         this.oY = oY;
         this.setLayout(new GridBagLayout());
         this.setSize(oX + largeur, oY + hauteur);
-        JButton button = new JButton("Recomancer");
+        JButton button = new JButton("Recommencer");
         button.setLocation(this.largeur/2 - button.getWidth()/2,this.hauteur/3 - button.getHeight()/2);
         this.add(button);
         button = new JButton("Abandonner");

@@ -1,9 +1,9 @@
 package Controller;
 
 import Model.*;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
-import javafx.util.Pair;
 
 public abstract class AIPlayer extends Player{
 
@@ -16,20 +16,20 @@ public abstract class AIPlayer extends Player{
                     next.play(i, j);
                     int idx = j*current.width() + i;
                     grids.add(new Pair<>(idx, next));
-    
+
                 }
             }
         }
 		return grids;
     }
-    
+
     public AIPlayer(Grid g) {
 		super(g);
 		// TODO Auto-generated constructor stub
 	}
 
     public abstract int getNextPlay(Grid g);
-    
+
     public ArrayList<Grid> prochainesConfigurations(Grid C){ //renvoie la liste des prochaines config accessibles
         int m=C.width();
         int n=C.height();
@@ -48,7 +48,7 @@ public abstract class AIPlayer extends Player{
                             }
                         }
                     }
-                    
+
                     //ajouter C_suivante à L
                     L.add(L.size(), C_suivante);
                 }
@@ -62,6 +62,6 @@ public abstract class AIPlayer extends Player{
 	protected boolean tempsEcoule() {
 		return false;
 	}
-    
+
 
 }
