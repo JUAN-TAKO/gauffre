@@ -23,17 +23,22 @@ public class GraphicsInterface implements Runnable{
     @Override
     public void run() {
         JFrame frame = new JFrame("Gaufre Empoisonnée");
-        BoardGUI board = new BoardGUI(g, 300, 300,500-300, 500-300);
-        MenuGUI menu = new MenuGUI(500-300, 500,0, 0);
+        BoardGUI board = new BoardGUI(g, 300, 300,0, 0);
+        MenuGUI menu = new MenuGUI(200, 500,0, 0);
         board.addMouseListener(new AdaptateurSouris(board, collector));
 		Timer chrono = new Timer( 16, new AdaptateurTemps(collector));
 		chrono.start();
-        JPanel panel = new JPanel(new BorderLayout());
-        frame.add(panel);
-        panel.add(board);
-        panel.add(menu);
+        JPanel menuContainer = new JPanel(new BorderLayout());
+        JPanel gridContainer = new JPanel(new BorderLayout());
+        JPanel globalContainer = new JPanel();
+        globalContainer.setLayout(new BoxLayout(globalContainer, BoxLayout.LINE_AXIS));
+        globalContainer.add(menuContainer);
+        globalContainer.add(gridContainer);
+        menuContainer.add(menu);
+        gridContainer.add(board);
+        frame.add(globalContainer);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 500);
+        frame.setSize(1000, 500);
         frame.setVisible(true);
     }
 }
